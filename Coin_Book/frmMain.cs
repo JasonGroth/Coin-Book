@@ -13,7 +13,7 @@ namespace Coin_Book
     public partial class frmMain : Form
     {
         private ICoinLogic coinLogic = new BusinessLogicCoins();
-        CommonCoin theCoin;
+        CommonCoin commonCoin = new CommonCoin("", "", 0, "");
 
         public frmMain()
         {
@@ -30,6 +30,8 @@ namespace Coin_Book
 
         private void BtnCoinAdd_Click(object sender, EventArgs e)
         {
+            lblMessage.Text = String.Empty;
+
             if (String.IsNullOrEmpty(txtCoinYear.Text))
             {
                 lblMessage.Text = "Year does not have a value assigned!";
@@ -39,19 +41,44 @@ namespace Coin_Book
             {
                 try
                 {
-                    theCoin.Type = cmbCoinType.Text;
-                    theCoin.Mint = cmbCoinMint.Text;
-                    theCoin.Year = Int32.Parse(txtCoinYear.Text);
+                    commonCoin.Type = cmbCoinType.Text;
+                    commonCoin.Mint = cmbCoinMint.Text;
+                    commonCoin.Year = Int32.Parse(txtCoinYear.Text);
 
-                    bool blnAddResult = coinLogic.AddCoin(theCoin);
-                    if (blnAddResult)
+                    int blnAddResult = coinLogic.AddCoin(commonCoin);
+                    bool blnIsItKeyDate = coinLogic.IsCoinKeyDate(commonCoin).Item1;
+                    string strMessageKeyDate = coinLogic.IsCoinKeyDate(commonCoin).Item2;
+
+                    if (coinLogic.DoesCoinHaveSilver(commonCoin))
+                    {
+                        MessageBox.Show("This contains silver!", "Contains Silver", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No silver, sorry!", "No Silver", MessageBoxButtons.OK);
+                    }
+
+                    if (blnIsItKeyDate)
+                    {
+                        MessageBox.Show(strMessageKeyDate, "Key Date", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Not a key date, sorry!", "Not Key Date", MessageBoxButtons.OK);
+                    }
+
+                    if (blnAddResult == 1)
                     {
                         lblMessage.Text = "Coin was added!";
                         PopulateGrid();
                     }
+                    else if (blnAddResult == 2)
+                    {
+                        lblMessage.Text = "Coin has an invlaid type";
+                    }
                     else
                     {
-                        lblMessage.Text = "Coin already exists";
+                        lblMessage.Text = "Coin already exists!";
                     }
                 }
                 catch (Exception ex)
@@ -77,19 +104,19 @@ namespace Coin_Book
             {
                 try
                 {
-                    theCoin.Type = cmbCoinType.Text;
-                    theCoin.Mint = cmbCoinMint.Text;
-                    theCoin.Year = Int32.Parse(txtCoinYear.Text);
+                    commonCoin.Type = cmbCoinType.Text;
+                    commonCoin.Mint = cmbCoinMint.Text;
+                    commonCoin.Year = Int32.Parse(txtCoinYear.Text);
 
-                    bool blnDeleteResult = coinLogic.DeleteCoin(theCoin);
-                    if (blnDeleteResult)
+                    int blnDeleteResult = coinLogic.DeleteCoin(commonCoin);
+                    if (blnDeleteResult == 0)
                     {
-                        lblMessage.Text = "Coin was added!";
+                        lblMessage.Text = "Coin was deleted!";
                         PopulateGrid();
                     }
                     else
                     {
-                        lblMessage.Text = "Coin already exists";
+                        lblMessage.Text = "Can't delete a coin that doesn't exist!";
                     }
                 }
                 catch (Exception ex)

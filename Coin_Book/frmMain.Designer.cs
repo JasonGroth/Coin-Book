@@ -47,6 +47,13 @@
             this.pieChart2 = new LiveCharts.WinForms.PieChart();
             this.pieChart1 = new LiveCharts.WinForms.PieChart();
             this.tpCoins = new System.Windows.Forms.TabPage();
+            this.lblMessage = new System.Windows.Forms.Label();
+            this.tblCoinDataDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCoinDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.databaseDataSet = new Coin_Book.DatabaseDataSet();
             this.gbCoinSearch = new System.Windows.Forms.GroupBox();
             this.btnCoinDelete = new System.Windows.Forms.Button();
             this.btnCoinSearch = new System.Windows.Forms.Button();
@@ -59,25 +66,19 @@
             this.cmbCoinType = new System.Windows.Forms.ComboBox();
             this.coinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.coinDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tblCoinDataDataGridView = new System.Windows.Forms.DataGridView();
-            this.lblMessage = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCoinDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet = new Coin_Book.DatabaseDataSet();
             this.tblCoinDataTableAdapter = new Coin_Book.DatabaseDataSetTableAdapters.tblCoinDataTableAdapter();
             this.tableAdapterManager = new Coin_Book.DatabaseDataSetTableAdapters.TableAdapterManager();
+            this.label1 = new System.Windows.Forms.Label();
             this.tcMain.SuspendLayout();
             this.tpHome.SuspendLayout();
             this.tpAnalysis.SuspendLayout();
             this.tpCoins.SuspendLayout();
-            this.gbCoinSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.coinsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coinDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblCoinDataDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblCoinDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
+            this.gbCoinSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.coinsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMain
@@ -88,11 +89,12 @@
             this.tcMain.Location = new System.Drawing.Point(12, 12);
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedIndex = 0;
-            this.tcMain.Size = new System.Drawing.Size(776, 481);
+            this.tcMain.Size = new System.Drawing.Size(1004, 481);
             this.tcMain.TabIndex = 0;
             // 
             // tpHome
             // 
+            this.tpHome.Controls.Add(this.label1);
             this.tpHome.Controls.Add(this.lblCreator);
             this.tpHome.Controls.Add(this.lblWelcome);
             this.tpHome.Location = new System.Drawing.Point(4, 22);
@@ -256,18 +258,71 @@
             // tpCoins
             // 
             this.tpCoins.AutoScroll = true;
+            this.tpCoins.Controls.Add(this.lblMessage);
             this.tpCoins.Controls.Add(this.tblCoinDataDataGridView);
             this.tpCoins.Controls.Add(this.gbCoinSearch);
             this.tpCoins.Location = new System.Drawing.Point(4, 22);
             this.tpCoins.Name = "tpCoins";
-            this.tpCoins.Size = new System.Drawing.Size(768, 455);
+            this.tpCoins.Size = new System.Drawing.Size(996, 455);
             this.tpCoins.TabIndex = 2;
             this.tpCoins.Text = "Coins";
             this.tpCoins.UseVisualStyleBackColor = true;
             // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Location = new System.Drawing.Point(96, 226);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(0, 13);
+            this.lblMessage.TabIndex = 9;
+            // 
+            // tblCoinDataDataGridView
+            // 
+            this.tblCoinDataDataGridView.AllowUserToAddRows = false;
+            this.tblCoinDataDataGridView.AllowUserToDeleteRows = false;
+            this.tblCoinDataDataGridView.AllowUserToResizeColumns = false;
+            this.tblCoinDataDataGridView.AutoGenerateColumns = false;
+            this.tblCoinDataDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblCoinDataDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.tblCoinDataDataGridView.DataSource = this.tblCoinDataBindingSource;
+            this.tblCoinDataDataGridView.Location = new System.Drawing.Point(427, 3);
+            this.tblCoinDataDataGridView.Name = "tblCoinDataDataGridView";
+            this.tblCoinDataDataGridView.Size = new System.Drawing.Size(566, 449);
+            this.tblCoinDataDataGridView.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Year";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Year";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Type";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Mint";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Mint";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // tblCoinDataBindingSource
+            // 
+            this.tblCoinDataBindingSource.DataMember = "tblCoinData";
+            this.tblCoinDataBindingSource.DataSource = this.databaseDataSet;
+            // 
+            // databaseDataSet
+            // 
+            this.databaseDataSet.DataSetName = "DatabaseDataSet";
+            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // gbCoinSearch
             // 
-            this.gbCoinSearch.Controls.Add(this.lblMessage);
             this.gbCoinSearch.Controls.Add(this.btnCoinDelete);
             this.gbCoinSearch.Controls.Add(this.btnCoinSearch);
             this.gbCoinSearch.Controls.Add(this.btnCoinAdd);
@@ -376,59 +431,6 @@
             this.cmbCoinType.Size = new System.Drawing.Size(167, 32);
             this.cmbCoinType.TabIndex = 0;
             // 
-            // tblCoinDataDataGridView
-            // 
-            this.tblCoinDataDataGridView.AllowUserToAddRows = false;
-            this.tblCoinDataDataGridView.AllowUserToDeleteRows = false;
-            this.tblCoinDataDataGridView.AllowUserToResizeColumns = false;
-            this.tblCoinDataDataGridView.AutoGenerateColumns = false;
-            this.tblCoinDataDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblCoinDataDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            this.tblCoinDataDataGridView.DataSource = this.tblCoinDataBindingSource;
-            this.tblCoinDataDataGridView.Location = new System.Drawing.Point(465, 3);
-            this.tblCoinDataDataGridView.Name = "tblCoinDataDataGridView";
-            this.tblCoinDataDataGridView.Size = new System.Drawing.Size(300, 449);
-            this.tblCoinDataDataGridView.TabIndex = 1;
-            // 
-            // lblMessage
-            // 
-            this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(26, 152);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(0, 24);
-            this.lblMessage.TabIndex = 9;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Year";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Year";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Type";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Type";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Mint";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Mint";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // tblCoinDataBindingSource
-            // 
-            this.tblCoinDataBindingSource.DataMember = "tblCoinData";
-            this.tblCoinDataBindingSource.DataSource = this.databaseDataSet;
-            // 
-            // databaseDataSet
-            // 
-            this.databaseDataSet.DataSetName = "DatabaseDataSet";
-            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tblCoinDataTableAdapter
             // 
             this.tblCoinDataTableAdapter.ClearBeforeFill = true;
@@ -439,11 +441,21 @@
             this.tableAdapterManager.tblCoinDataTableAdapter = this.tblCoinDataTableAdapter;
             this.tableAdapterManager.UpdateOrder = Coin_Book.DatabaseDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(24, 110);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(191, 72);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Key Dates:\r\n\r\nDollar - Any 2019 W";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 502);
+            this.ClientSize = new System.Drawing.Size(1020, 502);
             this.Controls.Add(this.tcMain);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -455,13 +467,14 @@
             this.tpAnalysis.ResumeLayout(false);
             this.tpAnalysis.PerformLayout();
             this.tpCoins.ResumeLayout(false);
+            this.tpCoins.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCoinDataDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCoinDataBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
             this.gbCoinSearch.ResumeLayout(false);
             this.gbCoinSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.coinsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinDataBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblCoinDataDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblCoinDataBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -510,6 +523,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Label label1;
     }
 }
 

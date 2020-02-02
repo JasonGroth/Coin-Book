@@ -12,13 +12,15 @@ namespace Coin_Book
         private string strType;
         private string strMint;
         private int intYear;
+        private string strName;
 
         // Contructor
-        public CommonCoin(string strType, string strMint, int intYear)
+        public CommonCoin(string strType, string strMint, int intYear, string strName)
         {
             this.strType = strType;
             this.strMint = strMint;
             this.intYear = intYear;
+            this.strName = strName;
         }
 
         // Properties
@@ -70,6 +72,22 @@ namespace Coin_Book
             }
         }
 
+        public string Name
+        {
+            get
+            {
+                return strName;
+            }
+
+            set
+            {
+                if (IsNameValid(value, Type))
+                {
+                    strName = value;
+                }
+            }
+        }
+
         // Functions
         public bool IsTypeValid(string strType)
         {
@@ -101,15 +119,95 @@ namespace Coin_Book
             }
         }
 
-        public bool IsYearValid(int year)
+        public bool IsYearValid(int intYear)
         {
-            if (year > 0)
+            if (intYear > 0)
             {
                 return true;
             }
             else
             {
                 return false;
+            }
+        }
+
+        public bool IsNameValid(string strName, string strType)
+        {
+            bool value = false;
+
+            switch (strType.ToLower())
+            {
+                case "penny":
+                    if (strName.ToLower().Contains("wheat") ||
+                        strName.ToLower().Contains("memorial") ||
+                        strName.ToLower().Contains("shield"))
+                    {
+                        value = true;
+                    }
+                    return value;
+                case "nickel":
+                    if (strName.ToLower().Contains("v") ||
+                        strName.ToLower().Contains("indian head") ||
+                        strName.ToLower().Contains("jefferson"))
+                    {
+                        value = true;
+                    }
+                    return value;
+                case "dime":
+                    if (strName.ToLower().Contains("disme") ||
+                        strName.ToLower().Contains("draped bust") ||
+                        strName.ToLower().Contains("capped bust") ||
+                        strName.ToLower().Contains("seated liberty") ||
+                        strName.ToLower().Contains("barber") ||
+                        strName.ToLower().Contains("mercury") ||
+                        strName.ToLower().Contains("franklin"))
+                    {
+                        value = true;
+                    }
+                    return value;
+                case "quarter":
+                    if (strName.ToLower().Contains("wright") ||
+                        strName.ToLower().Contains("draped bust") ||
+                        strName.ToLower().Contains("capped bust") ||
+                        strName.ToLower().Contains("seated liberty") ||
+                        strName.ToLower().Contains("barber") ||
+                        strName.ToLower().Contains("standing liberty") ||
+                        strName.ToLower().Contains("washington"))
+                    {
+                        value = true;
+                    }
+                    return value;
+                case "half-dollar":
+                    if (strName.ToLower().Contains("flowing") ||
+                        strName.ToLower().Contains("draped bust") ||
+                        strName.ToLower().Contains("capped bust") ||
+                        strName.ToLower().Contains("seated liberty") ||
+                        strName.ToLower().Contains("barber") ||
+                        strName.ToLower().Contains("walking liberty") ||
+                        strName.ToLower().Contains("franklin") ||
+                        strName.ToLower().Contains("kennedy"))
+                    {
+                        value = true;
+                    }
+                    return value;
+                case "dollar":
+                    if (strName.ToLower().Contains("seated liberty") ||
+                        strName.ToLower().Contains("gold") ||
+                        strName.ToLower().Contains("trade") ||
+                        strName.ToLower().Contains("morgan") ||
+                        strName.ToLower().Contains("peace") ||
+                        strName.ToLower().Contains("eisenhower") ||
+                        strName.ToLower().Contains("susan b anthony") ||
+                        strName.ToLower().Contains("american silver eagle") ||
+                        strName.ToLower().Contains("sacagawea") ||
+                        strName.ToLower().Contains("president") ||
+                        strName.ToLower().Contains("innovation"))
+                    {
+                        value = true;
+                    }
+                    return value;
+                default:
+                    return false;
             }
         }
     }

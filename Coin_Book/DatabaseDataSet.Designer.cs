@@ -392,13 +392,6 @@ namespace Coin_Book {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public tblCoinDataRow FindByYear(int Year) {
-                return ((tblCoinDataRow)(this.Rows.Find(new object[] {
-                            Year})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 tblCoinDataDataTable cln = ((tblCoinDataDataTable)(base.Clone()));
                 cln.InitVars();
@@ -428,10 +421,7 @@ namespace Coin_Book {
                 base.Columns.Add(this.columnType);
                 this.columnMint = new global::System.Data.DataColumn("Mint", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMint);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnYear}, true));
                 this.columnYear.AllowDBNull = false;
-                this.columnYear.Unique = true;
                 this.columnType.AllowDBNull = false;
                 this.columnType.MaxLength = 10;
                 this.columnMint.AllowDBNull = false;
@@ -820,8 +810,8 @@ namespace Coin_Book.DatabaseDataSetTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT count(*) FROM dbo.tblCoinData WHERE Type = @Type AND Mint = @Mint AND Year" +
-                " = @Year";
+            this._commandCollection[1].CommandText = "SELECT * FROM dbo.tblCoinData WHERE Type = @Type AND Mint = @Mint AND Year = @Yea" +
+                "r";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Type", global::System.Data.SqlDbType.Char, 10, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mint", global::System.Data.SqlDbType.Char, 10, global::System.Data.ParameterDirection.Input, 0, 0, "Mint", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1033,14 +1023,6 @@ namespace Coin_Book.DatabaseDataSetTableAdapters {
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Type, string Mint, int Original_Year, string Original_Type, string Original_Mint) {
-            return this.Update(Original_Year, Type, Mint, Original_Year, Original_Type, Original_Mint);
         }
     }
     

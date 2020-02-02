@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using System.Windows.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using System.Data.EntityClient;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 
 namespace Coin_Book
 {
@@ -16,38 +19,105 @@ namespace Coin_Book
     {
         void AddTheCoin(CommonCoin theCoin);
         void DeleteTheCoin(CommonCoin theCoin);
-        bool GetCoinLookUp(CommonCoin theCoin);
-        List<DatabaseDataSet.tblCoinDataRow> GetData();
+        int DoesCoinExistInDB(CommonCoin theCoin);
+        List<CommonCoin> GetData();
     }
 
     public class BackendCode : IDataLogic
     {
-        DatabaseDataSetTableAdapters.tblCoinDataTableAdapter tblCoinData = new DatabaseDataSetTableAdapters.tblCoinDataTableAdapter();
-
+        string connectString = "Data Source=JASGR0TH;Initial Catalog=Jason;Integrated Security=True";
+        
         public void AddTheCoin(CommonCoin theCoin)
         {
-            tblCoinData.Insert(theCoin.Year, theCoin.Type, theCoin.Mint);
+            SqlConnection connect = new SqlConnection(connectString);
+            connect.Open();
+
+            string sql = "INSERT INTO tblCoinDataSQL (Year, Type, Mint, Name) VALUES('" + theCoin.Year + "','" + theCoin.Type + "','" + theCoin.Mint + "','" + theCoin.Name + "')";
+
+            if (connect.State == System.Data.ConnectionState.Open)
+            {
+                SqlCommand cmd = new SqlCommand(sql, connect);
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void DeleteTheCoin(CommonCoin theCoin)
         {
-            tblCoinData.Delete(theCoin.Year, theCoin.Type, theCoin.Mint);
-        }
+            SqlConnection connect = new SqlConnection(connectString);
+            connect.Open();
 
-        public bool GetCoinLookUp(CommonCoin theCoin)
-        {
-            if(tblCoinData.GetDataBy(theCoin.Type, theCoin.Mint, theCoin.Year).Count > 0) {
-                return true;
-            }
-            else
+            string sql = "DELETE tblCoinDataSQL WHERE Type = '" + theCoin.Type + "' AND Mint = '" + theCoin.Mint + "' AND Year = '" + theCoin.Year +"'";
+
+            if (connect.State == System.Data.ConnectionState.Open)
             {
-                return false;
+                SqlCommand cmd = new SqlCommand(sql, connect);
+                cmd.ExecuteNonQuery();
             }
         }
 
-        public List<DatabaseDataSet.tblCoinDataRow> GetData()
+        public int DoesCoinExistInDB(CommonCoin theCoin)
         {
-            return tblCoinData.PopulateData().ToList();
+            SqlConnection connect = new SqlConnection(connectString);
+            connect.Open();
+            string sql = "SELECT count(*) FROM tblCoinDataSQL WHERE Type = '" + theCoin.Type + "' AND Mint = '" + theCoin.Mint + "' AND Year = '" + theCoin.Year + "'";
+            int value = 0;
+
+            if (connect.State == System.Data.ConnectionState.Open)
+            {
+                SqlCommand cmd = new SqlCommand(sql, connect);
+                try
+                {
+                    value = (int)cmd.ExecuteScalar();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return (int)value;
         }
+
+        public List<CommonCoin> GetData()
+        {
+            var listOfCoins = new List<CommonCoin>();
+
+            SqlConnection connect = new SqlConnection(connectString);
+            connect.Open();
+
+            string sql = @"SELECT Year, Type, Mint, Name
+                           FROM tblCoinDataSQL
+                           ORDER BY Type, Year";
+
+            if (connect.State == System.Data.ConnectionState.Open)
+            {
+                SqlCommand cmd = new SqlCommand(sql, connect);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    
+                    while (reader.Read())
+                    {
+                        var coin = new CommonCoin("", "", 0, "");
+
+                        var type = reader["Type"] as string;
+                        var mint = reader["Mint"] as string;
+                        var year = (int)reader["Year"];
+                        var name = reader["Name"] as string;
+
+                        coin.Year = year;
+                        coin.Type = type.Trim();
+                        coin.Mint = mint.Trim();
+                        coin.Name = name.Trim();
+                        listOfCoins.Add(coin);
+                    }
+
+                    reader.Close();
+                }
+            }
+            return listOfCoins;
+        }
+
+        
     }
 }
