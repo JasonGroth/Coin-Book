@@ -31,30 +31,31 @@
             this.components = new System.ComponentModel.Container();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tpHome = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblCreator = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.tpAnalysis = new System.Windows.Forms.TabPage();
-            this.lblAnalysisDollar = new System.Windows.Forms.Label();
-            this.lblAnalysisHalf = new System.Windows.Forms.Label();
-            this.lblAnalysisQuarter = new System.Windows.Forms.Label();
-            this.lblAnalysisDime = new System.Windows.Forms.Label();
-            this.lblAnalysisNickel = new System.Windows.Forms.Label();
-            this.lblAnalysisPenny = new System.Windows.Forms.Label();
-            this.pieChart6 = new LiveCharts.WinForms.PieChart();
-            this.pieChart5 = new LiveCharts.WinForms.PieChart();
-            this.pieChart4 = new LiveCharts.WinForms.PieChart();
-            this.pieChart3 = new LiveCharts.WinForms.PieChart();
-            this.pieChart2 = new LiveCharts.WinForms.PieChart();
-            this.pieChart1 = new LiveCharts.WinForms.PieChart();
+            this.userControlGraphs1 = new Coin_Book.Screens.userControlGraphs();
             this.tpCoins = new System.Windows.Forms.TabPage();
+            this.lblMessageAnswer = new System.Windows.Forms.Label();
             this.lblMessage = new System.Windows.Forms.Label();
+            this.lblKeyDateAnswer = new System.Windows.Forms.Label();
+            this.lblSilverAnswer = new System.Windows.Forms.Label();
+            this.lblKeyDate = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblSilver = new System.Windows.Forms.Label();
             this.tblCoinDataDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblCoinDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet = new Coin_Book.DatabaseDataSet();
             this.gbCoinSearch = new System.Windows.Forms.GroupBox();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.lblCoinName = new System.Windows.Forms.Label();
+            this.txtCoinName = new System.Windows.Forms.TextBox();
             this.btnCoinDelete = new System.Windows.Forms.Button();
             this.btnCoinSearch = new System.Windows.Forms.Button();
             this.btnCoinAdd = new System.Windows.Forms.Button();
@@ -64,11 +65,12 @@
             this.lblCoinType = new System.Windows.Forms.Label();
             this.cmbCoinMint = new System.Windows.Forms.ComboBox();
             this.cmbCoinType = new System.Windows.Forms.ComboBox();
-            this.coinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.coinDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblCoinDataTableAdapter = new Coin_Book.DatabaseDataSetTableAdapters.tblCoinDataTableAdapter();
             this.tableAdapterManager = new Coin_Book.DatabaseDataSetTableAdapters.TableAdapterManager();
-            this.label1 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.coinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.coinDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userControlOverall1 = new Coin_Book.Screens.userControlOverall();
             this.tcMain.SuspendLayout();
             this.tpHome.SuspendLayout();
             this.tpAnalysis.SuspendLayout();
@@ -89,7 +91,7 @@
             this.tcMain.Location = new System.Drawing.Point(12, 12);
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedIndex = 0;
-            this.tcMain.Size = new System.Drawing.Size(1004, 481);
+            this.tcMain.Size = new System.Drawing.Size(964, 481);
             this.tcMain.TabIndex = 0;
             // 
             // tpHome
@@ -100,10 +102,20 @@
             this.tpHome.Location = new System.Drawing.Point(4, 22);
             this.tpHome.Name = "tpHome";
             this.tpHome.Padding = new System.Windows.Forms.Padding(3);
-            this.tpHome.Size = new System.Drawing.Size(768, 455);
+            this.tpHome.Size = new System.Drawing.Size(956, 455);
             this.tpHome.TabIndex = 0;
             this.tpHome.Text = "Home";
             this.tpHome.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(24, 110);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(191, 72);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Key Dates:\r\n\r\nDollar - Any 2019 W";
             // 
             // lblCreator
             // 
@@ -127,154 +139,117 @@
             // 
             // tpAnalysis
             // 
-            this.tpAnalysis.Controls.Add(this.lblAnalysisDollar);
-            this.tpAnalysis.Controls.Add(this.lblAnalysisHalf);
-            this.tpAnalysis.Controls.Add(this.lblAnalysisQuarter);
-            this.tpAnalysis.Controls.Add(this.lblAnalysisDime);
-            this.tpAnalysis.Controls.Add(this.lblAnalysisNickel);
-            this.tpAnalysis.Controls.Add(this.lblAnalysisPenny);
-            this.tpAnalysis.Controls.Add(this.pieChart6);
-            this.tpAnalysis.Controls.Add(this.pieChart5);
-            this.tpAnalysis.Controls.Add(this.pieChart4);
-            this.tpAnalysis.Controls.Add(this.pieChart3);
-            this.tpAnalysis.Controls.Add(this.pieChart2);
-            this.tpAnalysis.Controls.Add(this.pieChart1);
+            this.tpAnalysis.Controls.Add(this.userControlOverall1);
+            this.tpAnalysis.Controls.Add(this.userControlGraphs1);
             this.tpAnalysis.Location = new System.Drawing.Point(4, 22);
             this.tpAnalysis.Name = "tpAnalysis";
             this.tpAnalysis.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAnalysis.Size = new System.Drawing.Size(768, 455);
+            this.tpAnalysis.Size = new System.Drawing.Size(956, 455);
             this.tpAnalysis.TabIndex = 1;
             this.tpAnalysis.Text = "Analysis";
             this.tpAnalysis.UseVisualStyleBackColor = true;
             // 
-            // lblAnalysisDollar
+            // userControlGraphs1
             // 
-            this.lblAnalysisDollar.AutoSize = true;
-            this.lblAnalysisDollar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnalysisDollar.Location = new System.Drawing.Point(524, 339);
-            this.lblAnalysisDollar.Name = "lblAnalysisDollar";
-            this.lblAnalysisDollar.Size = new System.Drawing.Size(51, 19);
-            this.lblAnalysisDollar.TabIndex = 11;
-            this.lblAnalysisDollar.Text = "Dollar";
-            // 
-            // lblAnalysisHalf
-            // 
-            this.lblAnalysisHalf.AutoSize = true;
-            this.lblAnalysisHalf.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnalysisHalf.Location = new System.Drawing.Point(524, 202);
-            this.lblAnalysisHalf.Name = "lblAnalysisHalf";
-            this.lblAnalysisHalf.Size = new System.Drawing.Size(85, 19);
-            this.lblAnalysisHalf.TabIndex = 10;
-            this.lblAnalysisHalf.Text = "Half-Dollar";
-            // 
-            // lblAnalysisQuarter
-            // 
-            this.lblAnalysisQuarter.AutoSize = true;
-            this.lblAnalysisQuarter.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnalysisQuarter.Location = new System.Drawing.Point(524, 47);
-            this.lblAnalysisQuarter.Name = "lblAnalysisQuarter";
-            this.lblAnalysisQuarter.Size = new System.Drawing.Size(62, 19);
-            this.lblAnalysisQuarter.TabIndex = 9;
-            this.lblAnalysisQuarter.Text = "Quarter";
-            // 
-            // lblAnalysisDime
-            // 
-            this.lblAnalysisDime.AutoSize = true;
-            this.lblAnalysisDime.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnalysisDime.Location = new System.Drawing.Point(114, 339);
-            this.lblAnalysisDime.Name = "lblAnalysisDime";
-            this.lblAnalysisDime.Size = new System.Drawing.Size(45, 19);
-            this.lblAnalysisDime.TabIndex = 8;
-            this.lblAnalysisDime.Text = "Dime";
-            // 
-            // lblAnalysisNickel
-            // 
-            this.lblAnalysisNickel.AutoSize = true;
-            this.lblAnalysisNickel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnalysisNickel.Location = new System.Drawing.Point(114, 202);
-            this.lblAnalysisNickel.Name = "lblAnalysisNickel";
-            this.lblAnalysisNickel.Size = new System.Drawing.Size(53, 19);
-            this.lblAnalysisNickel.TabIndex = 7;
-            this.lblAnalysisNickel.Text = "Nickel";
-            // 
-            // lblAnalysisPenny
-            // 
-            this.lblAnalysisPenny.AutoSize = true;
-            this.lblAnalysisPenny.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnalysisPenny.Location = new System.Drawing.Point(114, 47);
-            this.lblAnalysisPenny.Name = "lblAnalysisPenny";
-            this.lblAnalysisPenny.Size = new System.Drawing.Size(50, 19);
-            this.lblAnalysisPenny.TabIndex = 6;
-            this.lblAnalysisPenny.Text = "Penny";
-            // 
-            // pieChart6
-            // 
-            this.pieChart6.Location = new System.Drawing.Point(155, 294);
-            this.pieChart6.Name = "pieChart6";
-            this.pieChart6.Size = new System.Drawing.Size(200, 100);
-            this.pieChart6.TabIndex = 5;
-            this.pieChart6.Text = "pieChart6";
-            // 
-            // pieChart5
-            // 
-            this.pieChart5.Location = new System.Drawing.Point(562, 294);
-            this.pieChart5.Name = "pieChart5";
-            this.pieChart5.Size = new System.Drawing.Size(200, 100);
-            this.pieChart5.TabIndex = 4;
-            this.pieChart5.Text = "pieChart5";
-            // 
-            // pieChart4
-            // 
-            this.pieChart4.Location = new System.Drawing.Point(562, 151);
-            this.pieChart4.Name = "pieChart4";
-            this.pieChart4.Size = new System.Drawing.Size(200, 100);
-            this.pieChart4.TabIndex = 3;
-            this.pieChart4.Text = "pieChart4";
-            // 
-            // pieChart3
-            // 
-            this.pieChart3.Location = new System.Drawing.Point(565, 6);
-            this.pieChart3.Name = "pieChart3";
-            this.pieChart3.Size = new System.Drawing.Size(200, 100);
-            this.pieChart3.TabIndex = 2;
-            this.pieChart3.Text = "pieChart3";
-            // 
-            // pieChart2
-            // 
-            this.pieChart2.Location = new System.Drawing.Point(155, 151);
-            this.pieChart2.Name = "pieChart2";
-            this.pieChart2.Size = new System.Drawing.Size(200, 100);
-            this.pieChart2.TabIndex = 1;
-            this.pieChart2.Text = "pieChart2";
-            // 
-            // pieChart1
-            // 
-            this.pieChart1.Location = new System.Drawing.Point(155, 6);
-            this.pieChart1.Name = "pieChart1";
-            this.pieChart1.Size = new System.Drawing.Size(200, 100);
-            this.pieChart1.TabIndex = 0;
-            this.pieChart1.Text = "pieChart1";
+            this.userControlGraphs1.Location = new System.Drawing.Point(348, 3);
+            this.userControlGraphs1.Name = "userControlGraphs1";
+            this.userControlGraphs1.Size = new System.Drawing.Size(602, 446);
+            this.userControlGraphs1.TabIndex = 2;
             // 
             // tpCoins
             // 
             this.tpCoins.AutoScroll = true;
+            this.tpCoins.Controls.Add(this.lblMessageAnswer);
             this.tpCoins.Controls.Add(this.lblMessage);
+            this.tpCoins.Controls.Add(this.lblKeyDateAnswer);
+            this.tpCoins.Controls.Add(this.lblSilverAnswer);
+            this.tpCoins.Controls.Add(this.lblKeyDate);
+            this.tpCoins.Controls.Add(this.label3);
+            this.tpCoins.Controls.Add(this.label2);
+            this.tpCoins.Controls.Add(this.lblSilver);
             this.tpCoins.Controls.Add(this.tblCoinDataDataGridView);
             this.tpCoins.Controls.Add(this.gbCoinSearch);
             this.tpCoins.Location = new System.Drawing.Point(4, 22);
             this.tpCoins.Name = "tpCoins";
-            this.tpCoins.Size = new System.Drawing.Size(996, 455);
+            this.tpCoins.Size = new System.Drawing.Size(956, 455);
             this.tpCoins.TabIndex = 2;
-            this.tpCoins.Text = "Coins";
+            this.tpCoins.Text = " Coins";
             this.tpCoins.UseVisualStyleBackColor = true;
+            // 
+            // lblMessageAnswer
+            // 
+            this.lblMessageAnswer.AutoSize = true;
+            this.lblMessageAnswer.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessageAnswer.Location = new System.Drawing.Point(107, 357);
+            this.lblMessageAnswer.Name = "lblMessageAnswer";
+            this.lblMessageAnswer.Size = new System.Drawing.Size(0, 19);
+            this.lblMessageAnswer.TabIndex = 16;
             // 
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(96, 226);
+            this.lblMessage.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Location = new System.Drawing.Point(25, 357);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(0, 13);
-            this.lblMessage.TabIndex = 9;
+            this.lblMessage.Size = new System.Drawing.Size(76, 19);
+            this.lblMessage.TabIndex = 15;
+            this.lblMessage.Text = "Message:";
+            // 
+            // lblKeyDateAnswer
+            // 
+            this.lblKeyDateAnswer.AutoSize = true;
+            this.lblKeyDateAnswer.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKeyDateAnswer.Location = new System.Drawing.Point(118, 421);
+            this.lblKeyDateAnswer.Name = "lblKeyDateAnswer";
+            this.lblKeyDateAnswer.Size = new System.Drawing.Size(0, 19);
+            this.lblKeyDateAnswer.TabIndex = 14;
+            // 
+            // lblSilverAnswer
+            // 
+            this.lblSilverAnswer.AutoSize = true;
+            this.lblSilverAnswer.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSilverAnswer.Location = new System.Drawing.Point(92, 388);
+            this.lblSilverAnswer.Name = "lblSilverAnswer";
+            this.lblSilverAnswer.Size = new System.Drawing.Size(0, 19);
+            this.lblSilverAnswer.TabIndex = 13;
+            // 
+            // lblKeyDate
+            // 
+            this.lblKeyDate.AutoSize = true;
+            this.lblKeyDate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKeyDate.Location = new System.Drawing.Point(25, 421);
+            this.lblKeyDate.Name = "lblKeyDate";
+            this.lblKeyDate.Size = new System.Drawing.Size(82, 19);
+            this.lblKeyDate.TabIndex = 12;
+            this.lblKeyDate.Text = "Key Date?";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(443, 226);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 19);
+            this.label3.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(435, 218);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 19);
+            this.label2.TabIndex = 10;
+            // 
+            // lblSilver
+            // 
+            this.lblSilver.AutoSize = true;
+            this.lblSilver.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSilver.Location = new System.Drawing.Point(25, 388);
+            this.lblSilver.Name = "lblSilver";
+            this.lblSilver.Size = new System.Drawing.Size(56, 19);
+            this.lblSilver.TabIndex = 9;
+            this.lblSilver.Text = "Silver?";
             // 
             // tblCoinDataDataGridView
             // 
@@ -286,11 +261,12 @@
             this.tblCoinDataDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
             this.tblCoinDataDataGridView.DataSource = this.tblCoinDataBindingSource;
             this.tblCoinDataDataGridView.Location = new System.Drawing.Point(427, 3);
             this.tblCoinDataDataGridView.Name = "tblCoinDataDataGridView";
-            this.tblCoinDataDataGridView.Size = new System.Drawing.Size(566, 449);
+            this.tblCoinDataDataGridView.Size = new System.Drawing.Size(526, 449);
             this.tblCoinDataDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -298,6 +274,7 @@
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Year";
             this.dataGridViewTextBoxColumn1.HeaderText = "Year";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 50;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -310,6 +287,14 @@
             this.dataGridViewTextBoxColumn3.DataPropertyName = "Mint";
             this.dataGridViewTextBoxColumn3.HeaderText = "Mint";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 283;
             // 
             // tblCoinDataBindingSource
             // 
@@ -323,6 +308,9 @@
             // 
             // gbCoinSearch
             // 
+            this.gbCoinSearch.Controls.Add(this.btnClear);
+            this.gbCoinSearch.Controls.Add(this.lblCoinName);
+            this.gbCoinSearch.Controls.Add(this.txtCoinName);
             this.gbCoinSearch.Controls.Add(this.btnCoinDelete);
             this.gbCoinSearch.Controls.Add(this.btnCoinSearch);
             this.gbCoinSearch.Controls.Add(this.btnCoinAdd);
@@ -335,14 +323,40 @@
             this.gbCoinSearch.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbCoinSearch.Location = new System.Drawing.Point(19, 16);
             this.gbCoinSearch.Name = "gbCoinSearch";
-            this.gbCoinSearch.Size = new System.Drawing.Size(408, 193);
+            this.gbCoinSearch.Size = new System.Drawing.Size(408, 254);
             this.gbCoinSearch.TabIndex = 1;
             this.gbCoinSearch.TabStop = false;
             this.gbCoinSearch.Text = "Search";
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(265, 92);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(137, 66);
+            this.btnClear.TabIndex = 11;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
+            // lblCoinName
+            // 
+            this.lblCoinName.AutoSize = true;
+            this.lblCoinName.Location = new System.Drawing.Point(11, 129);
+            this.lblCoinName.Name = "lblCoinName";
+            this.lblCoinName.Size = new System.Drawing.Size(63, 24);
+            this.lblCoinName.TabIndex = 10;
+            this.lblCoinName.Text = "Name";
+            // 
+            // txtCoinName
+            // 
+            this.txtCoinName.Location = new System.Drawing.Point(80, 126);
+            this.txtCoinName.Name = "txtCoinName";
+            this.txtCoinName.Size = new System.Drawing.Size(167, 32);
+            this.txtCoinName.TabIndex = 9;
+            // 
             // btnCoinDelete
             // 
-            this.btnCoinDelete.Location = new System.Drawing.Point(327, 152);
+            this.btnCoinDelete.Location = new System.Drawing.Point(327, 207);
             this.btnCoinDelete.Name = "btnCoinDelete";
             this.btnCoinDelete.Size = new System.Drawing.Size(75, 35);
             this.btnCoinDelete.TabIndex = 8;
@@ -354,14 +368,15 @@
             // 
             this.btnCoinSearch.Location = new System.Drawing.Point(265, 25);
             this.btnCoinSearch.Name = "btnCoinSearch";
-            this.btnCoinSearch.Size = new System.Drawing.Size(137, 94);
+            this.btnCoinSearch.Size = new System.Drawing.Size(137, 66);
             this.btnCoinSearch.TabIndex = 7;
             this.btnCoinSearch.Text = "Search";
             this.btnCoinSearch.UseVisualStyleBackColor = true;
+            this.btnCoinSearch.Click += new System.EventHandler(this.BtnCoinSearch_Click);
             // 
             // btnCoinAdd
             // 
-            this.btnCoinAdd.Location = new System.Drawing.Point(246, 152);
+            this.btnCoinAdd.Location = new System.Drawing.Point(246, 207);
             this.btnCoinAdd.Name = "btnCoinAdd";
             this.btnCoinAdd.Size = new System.Drawing.Size(75, 35);
             this.btnCoinAdd.TabIndex = 6;
@@ -441,21 +456,18 @@
             this.tableAdapterManager.tblCoinDataTableAdapter = this.tblCoinDataTableAdapter;
             this.tableAdapterManager.UpdateOrder = Coin_Book.DatabaseDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // label1
+            // userControlOverall1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(24, 110);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(191, 72);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Key Dates:\r\n\r\nDollar - Any 2019 W";
+            this.userControlOverall1.Location = new System.Drawing.Point(3, 5);
+            this.userControlOverall1.Name = "userControlOverall1";
+            this.userControlOverall1.Size = new System.Drawing.Size(339, 446);
+            this.userControlOverall1.TabIndex = 3;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 502);
+            this.ClientSize = new System.Drawing.Size(982, 502);
             this.Controls.Add(this.tcMain);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -465,7 +477,6 @@
             this.tpHome.ResumeLayout(false);
             this.tpHome.PerformLayout();
             this.tpAnalysis.ResumeLayout(false);
-            this.tpAnalysis.PerformLayout();
             this.tpCoins.ResumeLayout(false);
             this.tpCoins.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCoinDataDataGridView)).EndInit();
@@ -495,35 +506,34 @@
         private System.Windows.Forms.Label lblCoinType;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Label lblCreator;
-        private System.Windows.Forms.Label lblAnalysisPenny;
-        private LiveCharts.WinForms.PieChart pieChart6;
-        private LiveCharts.WinForms.PieChart pieChart5;
-        private LiveCharts.WinForms.PieChart pieChart4;
-        private LiveCharts.WinForms.PieChart pieChart3;
-        private LiveCharts.WinForms.PieChart pieChart2;
-        private LiveCharts.WinForms.PieChart pieChart1;
-        private System.Windows.Forms.Label lblAnalysisDollar;
-        private System.Windows.Forms.Label lblAnalysisHalf;
-        private System.Windows.Forms.Label lblAnalysisQuarter;
-        private System.Windows.Forms.Label lblAnalysisDime;
-        private System.Windows.Forms.Label lblAnalysisNickel;
         private System.Windows.Forms.Button btnCoinDelete;
         private System.Windows.Forms.Button btnCoinSearch;
         private System.Windows.Forms.BindingSource coinDataBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mintDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn yearDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource coinsBindingSource;
         private DatabaseDataSet databaseDataSet;
         private System.Windows.Forms.BindingSource tblCoinDataBindingSource;
         private DatabaseDataSetTableAdapters.tblCoinDataTableAdapter tblCoinDataTableAdapter;
         private DatabaseDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.DataGridView tblCoinDataDataGridView;
+        private System.Windows.Forms.Label lblSilver;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCoinName;
+        private System.Windows.Forms.Label lblCoinName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblKeyDate;
+        private System.Windows.Forms.Label lblSilverAnswer;
+        private System.Windows.Forms.Label lblKeyDateAnswer;
+        private System.Windows.Forms.Label lblMessageAnswer;
+        private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.Label lblMessage;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Button btnClear;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Screens.userControlGraphs userControlGraphs1;
+        private Screens.userControlOverall userControlOverall1;
     }
 }
 

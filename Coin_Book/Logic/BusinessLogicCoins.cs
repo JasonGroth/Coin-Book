@@ -13,6 +13,14 @@ namespace Coin_Book
         List<CommonCoin> GetData();
         bool DoesCoinHaveSilver(CommonCoin theCoin);
         Tuple<bool, string> IsCoinKeyDate(CommonCoin theCoin);
+        List<CommonCoin> SearchData(CommonCoin theCoin);
+        int AllPennies();
+        int AllDime();
+        int AllNickel();
+        int AllQuarter();
+        int AllHalf();
+        int AllDollar();
+        
     }
 
     public class BusinessLogicCoins : ICoinLogic
@@ -70,6 +78,11 @@ namespace Coin_Book
         public List<CommonCoin> GetData()
         {
             return backendCode.GetData();
+        }
+
+        public List<CommonCoin> SearchData(CommonCoin theCoin)
+        {
+            return backendCode.SearchDatabase(theCoin);
         }
 
         public bool DoesCoinHaveSilver(CommonCoin theCoin)
@@ -167,7 +180,7 @@ namespace Coin_Book
                         strMessage = "2,000,000 coins were made of each!";
                         blnValue = true;
                     }
-                    else if (theCoin.Year == 2009)
+                    else if (theCoin.Year == 2009 || theCoin.Year == 2010)
                     {
                         strMessage = "Keeper!";
                     }
@@ -185,6 +198,36 @@ namespace Coin_Book
             var tuple = new Tuple<bool, string>(blnValue, strMessage);
 
             return tuple;
+        }
+
+        public int AllPennies()
+        {
+            return backendCode.AllPennies();
+        }
+
+        public int AllDime()
+        {
+            return backendCode.AllDime();
+        }
+
+        public int AllNickel()
+        {
+            return backendCode.AllNickel();
+        }
+
+        public int AllQuarter()
+        {
+            return backendCode.AllQuarter();
+        }
+
+        public int AllHalf()
+        {
+            return backendCode.AllHalf();
+        }
+
+        public int AllDollar()
+        {
+            return backendCode.AllDollar();
         }
     }
 }

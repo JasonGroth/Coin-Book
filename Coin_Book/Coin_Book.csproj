@@ -92,23 +92,40 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackendCode.cs" />
-    <Compile Include="BusinessLogicCoins.cs" />
-    <Compile Include="CommonCoin.cs" />
+    <Compile Include="Database\BackendCode.cs" />
+    <Compile Include="Logic\BusinessLogicCoins.cs" />
+    <Compile Include="Objects\CommonCoin.cs" />
     <Compile Include="DatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="Screens\userControlGraphs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screens\userControlGraphs.Designer.cs">
+      <DependentUpon>userControlGraphs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
+    <Compile Include="Screens\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logic\GraphLogic.cs" />
+    <Compile Include="Database\GraphsDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmMain.resx">
+    <Compile Include="Screens\userControlOverall.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screens\userControlOverall.Designer.cs">
+      <DependentUpon>userControlOverall.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Screens\userControlGraphs.resx">
+      <DependentUpon>userControlGraphs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -120,6 +137,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Screens\userControlOverall.resx">
+      <DependentUpon>userControlOverall.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="DatabaseDataSet.xsc">
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </None>
